@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { ImageCarousel } from "@/components/ImageCarousel";
 import { getPost } from "@/lib/api";
 import Link from "next/link";
 
@@ -23,6 +24,14 @@ export default async function BlogDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const carouselImages = [
+    ...(post.coverImage ? [{ src: post.coverImage.url, alt: post.coverImage.alt || post.title }] : []),
+    ...(post.gallery?.map((g: any) => ({
+      src: g.image?.url,
+      alt: g.alt || post.title,
+    })).filter((g: any) => g.src) || []),
+  ];
+
   return (
     <article className="max-w-2xl">
       <div className="flex flex-wrap gap-1.5 mb-3">
@@ -42,17 +51,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
           })}
         </p>
       )}
-      {post.coverImage && (
-        <div className="relative aspect-[16/9] mb-8 rounded-lg overflow-hidden">
-          <Image
-            src={post.coverImage.url}
-            alt={post.coverImage.alt || post.title}
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-      )}
+      {carouselImages.length > 0 && <ImageCarousel images={carouselImages} />}
       <Separator className="mb-6" />
       {post.content && (
         <div className="prose prose-sm max-w-none leading-relaxed whitespace-pre-wrap">

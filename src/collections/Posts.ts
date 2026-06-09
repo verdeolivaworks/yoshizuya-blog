@@ -38,6 +38,26 @@ export const Posts: CollectionConfig = {
       },
     },
     {
+      name: "gallery",
+      type: "array",
+      label: "画像スロット",
+      fields: [
+        {
+          name: "image",
+          type: "upload",
+          relationTo: "media",
+          required: true,
+        },
+        {
+          name: "alt",
+          type: "text",
+        },
+      ],
+      admin: {
+        position: "sidebar",
+      },
+    },
+    {
       name: "publishedAt",
       type: "date",
       admin: {
