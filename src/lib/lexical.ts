@@ -10,11 +10,12 @@ interface LexicalNode {
 function renderNode(node: LexicalNode): string {
   if (node.type === "text" || node.text !== undefined) {
     let t = node.text || "";
-    if (node.format & 1) t = `<strong>${t}</strong>`;
-    if (node.format & 2) t = `<em>${t}</em>`;
-    if (node.format & 8) t = `<u>${t}</u>`;
-    if (node.format & 16) t = `<s>${t}</s>`;
-    if (node.format & 4) t = `<code>${t}</code>`;
+    const f = node.format ?? 0;
+    if (f & 1) t = `<strong>${t}</strong>`;
+    if (f & 2) t = `<em>${t}</em>`;
+    if (f & 8) t = `<u>${t}</u>`;
+    if (f & 16) t = `<s>${t}</s>`;
+    if (f & 4) t = `<code>${t}</code>`;
     return t;
   }
 
