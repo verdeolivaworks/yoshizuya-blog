@@ -37,6 +37,12 @@ yarn-error.log*
 # payload
 /media/
 
+# docker data volume
+/data/
+
+# temp
+tsconfig.tsbuildinfo
+
 # vercel
 .vercel
 

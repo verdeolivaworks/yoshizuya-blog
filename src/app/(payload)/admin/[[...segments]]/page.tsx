@@ -1,11 +1,13 @@
 import { RootPage } from "@payloadcms/next/views";
 import config from "@payload-config";
+import { importMap } from "../importMap";
 
-interface PageProps {
+type PageProps = {
   params: Promise<{ segments: string[] }>;
   searchParams: Promise<{ [key: string]: string | string[] }>;
-}
+};
 
-export default function Page(props: PageProps) {
-  return RootPage({ config, ...props });
-}
+const Page = ({ params, searchParams }: PageProps) =>
+  RootPage({ config, params, searchParams, importMap });
+
+export default Page;
