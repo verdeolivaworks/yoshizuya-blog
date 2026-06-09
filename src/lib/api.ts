@@ -31,9 +31,37 @@ export async function getPosts(params?: {
   return fetchAPI(`posts?${searchParams.toString()}`);
 }
 
+async function populateMedia(post: any): Promise<any> {
+  if (!post) return post;
+
+  if (typeof post.coverImage === "number") {
+    try {
+      const media = await fetchAPI(`media/${post.coverImage}`);
+      post.coverImage = media;
+    } catch {
+      post.coverImage = null;
+    }
+  }
+
+  if (post.gallery?.length) {
+    for (const item of post.gallery) {
+      if (typeof item.image === "number") {
+        try {
+          const media = await fetchAPI(`media/${item.image}`);
+          item.image = media;
+        } catch {
+          item.image = null;
+        }
+      }
+    }
+  }
+
+  return post;
+}
+
 export async function getPost(slug: string) {
-  const data = await fetchAPI(`posts?where[slug][equals]=${slug}&depth=2`);
-  return data.docs?.[0] || null;
+  const data = await fetchAPI(`posts?where[slug][equals]=${slug}&depth=0`);
+  return populateMedia(data.docs?.[0] || null);
 }
 
 export async function getCategories() {
