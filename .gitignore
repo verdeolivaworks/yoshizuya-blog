@@ -34,11 +34,14 @@ yarn-error.log*
 .env*
 !.env.example
 
-# payload
+# payload / docker persistent media
 /media/
 
-# docker data volume
+# docker db data
 /data/
+
+# docker persistent media
+/media/
 
 # temp
 tsconfig.tsbuildinfo

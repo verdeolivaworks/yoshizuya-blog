@@ -22,6 +22,8 @@ services:
       NEXT_PUBLIC_APP_URL: https://yoshizuya-blog.atkimono.jp
     ports:
       - "127.0.0.1:3000:3000"
+    volumes:
+      - ./media:/app/media
     depends_on:
       db:
         condition: service_healthy
