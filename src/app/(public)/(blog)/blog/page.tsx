@@ -36,9 +36,8 @@ export default async function BlogListPage({ searchParams }: PageProps) {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-6">ブログ</h1>
       {topBanners.length > 0 && (
-        <div className="mb-8">
+        <div className="mb-6">
           <BannerSlot banners={topBanners} variant="top" title="催事のご案内" />
         </div>
       )}
@@ -47,19 +46,19 @@ export default async function BlogListPage({ searchParams }: PageProps) {
           href="https://yoshizuya.furisode-collection.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 bg-yoshizuya-light text-foreground border border-yoshizuya-mid px-4 py-2 rounded-lg text-sm font-medium hover:bg-yoshizuya-mid transition-colors"
+          className="inline-flex items-center gap-1.5 border border-yoshizuya-mid text-foreground px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-yoshizuya-light transition-colors"
         >
           振袖コレクションを見る
-          <span className="text-xs">→</span>
+          <span className="text-yoshizuya-red text-xs font-bold">→</span>
         </a>
         <a
           href="https://yoshizuya.furisode-collection.com/%E3%83%AC%E3%83%B3%E3%82%BF%E3%83%AB%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 bg-yoshizuya-light text-foreground border border-yoshizuya-mid px-4 py-2 rounded-lg text-sm font-medium hover:bg-yoshizuya-mid transition-colors"
+          className="inline-flex items-center gap-1.5 border border-yoshizuya-mid text-foreground px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-yoshizuya-light transition-colors"
         >
           レンタルコレクションを見る
-          <span className="text-xs">→</span>
+          <span className="text-yoshizuya-red text-xs font-bold">→</span>
         </a>
       </div>
       {posts.length === 0 ? (
