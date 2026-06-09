@@ -6,6 +6,10 @@ export const Inquiries: CollectionConfig = {
     useAsTitle: "name",
     defaultColumns: ["name", "email", "createdAt"],
   },
+  access: {
+    create: () => true,
+    read: () => false, // only admin via panel
+  },
   fields: [
     {
       name: "name",
