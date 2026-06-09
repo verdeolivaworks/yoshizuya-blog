@@ -1,14 +1,20 @@
 import { SearchBar } from "@/components/SearchBar";
+import { BannerSlot } from "@/components/BannerSlot";
 import { Separator } from "@/components/ui/separator";
-import { getCategories, getTags } from "@/lib/api";
+import { getCategories, getTags, getBanners } from "@/lib/api";
 import Link from "next/link";
 
 export default async function BlogLayout({ children }: { children: React.ReactNode }) {
   let categories = { docs: [] as { id: string; name: string; slug: string }[] };
   let tags = { docs: [] as { id: string; name: string; slug: string }[] };
+  let sidebarBanners: any[] = [];
 
   try {
-    [categories, tags] = await Promise.all([getCategories(), getTags()]);
+    [categories, tags, sidebarBanners] = await Promise.all([
+      getCategories(),
+      getTags(),
+      getBanners("sidebar"),
+    ]);
   } catch {
     // API not ready yet
   }
@@ -52,6 +58,12 @@ export default async function BlogLayout({ children }: { children: React.ReactNo
             ))}
           </div>
         </div>
+        {sidebarBanners.length > 0 && (
+          <>
+            <Separator />
+            <BannerSlot banners={sidebarBanners} variant="sidebar" />
+          </>
+        )}
       </aside>
     </div>
   );

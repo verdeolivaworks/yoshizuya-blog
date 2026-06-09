@@ -1,5 +1,6 @@
 import { BlogCard } from "@/components/BlogCard";
-import { getPosts } from "@/lib/api";
+import { BannerSlot } from "@/components/BannerSlot";
+import { getPosts, getBanners } from "@/lib/api";
 import Link from "next/link";
 import {
   Pagination,
@@ -20,9 +21,13 @@ export default async function BlogListPage({ searchParams }: PageProps) {
   const limit = 12;
 
   let postsData = { docs: [] as any[], totalPages: 1, page: 1 };
+  let topBanners: any[] = [];
 
   try {
-    postsData = await getPosts({ limit, page });
+    [postsData, topBanners] = await Promise.all([
+      getPosts({ limit, page }),
+      getBanners("top"),
+    ]);
   } catch {
     // API not ready yet
   }
@@ -32,6 +37,11 @@ export default async function BlogListPage({ searchParams }: PageProps) {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6">ブログ</h1>
+      {topBanners.length > 0 && (
+        <div className="mb-8">
+          <BannerSlot banners={topBanners} variant="top" title="催事のご案内" />
+        </div>
+      )}
       {posts.length === 0 ? (
         <p className="text-muted-foreground">記事がまだありません。</p>
       ) : (

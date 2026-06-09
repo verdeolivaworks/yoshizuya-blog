@@ -7,13 +7,14 @@ import { Categories } from "./collections/Categories.ts";
 import { Tags } from "./collections/Tags.ts";
 import { Media } from "./collections/Media.ts";
 import { Inquiries } from "./collections/Inquiries.ts";
+import { Banners } from "./collections/Banners.ts";
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || "",
   admin: {
     user: "users",
   },
-  collections: [Users, Posts, Categories, Tags, Media, Inquiries],
+  collections: [Users, Posts, Categories, Tags, Media, Inquiries, Banners],
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || "",

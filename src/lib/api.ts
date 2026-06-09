@@ -72,6 +72,13 @@ export async function getTags() {
   return fetchAPI("tags?limit=100&sort=name");
 }
 
+export async function getBanners(position: "sidebar" | "top") {
+  const data = await fetchAPI(
+    `banners?where[position][equals]=${position}&where[active][equals]=true&depth=2&sort=order`
+  );
+  return data.docs || [];
+}
+
 export async function submitInquiry(data: {
   name: string;
   email: string;
