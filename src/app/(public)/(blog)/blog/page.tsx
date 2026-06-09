@@ -42,6 +42,26 @@ export default async function BlogListPage({ searchParams }: PageProps) {
           <BannerSlot banners={topBanners} variant="top" title="催事のご案内" />
         </div>
       )}
+      <div className="flex flex-wrap gap-3 mb-8">
+        <a
+          href="https://yoshizuya.furisode-collection.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 bg-yoshizuya-light text-foreground border border-yoshizuya-mid px-4 py-2 rounded-lg text-sm font-medium hover:bg-yoshizuya-mid transition-colors"
+        >
+          振袖コレクションを見る
+          <span className="text-xs">→</span>
+        </a>
+        <a
+          href="https://yoshizuya.furisode-collection.com/%E3%83%AC%E3%83%B3%E3%82%BF%E3%83%AB%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 bg-yoshizuya-light text-foreground border border-yoshizuya-mid px-4 py-2 rounded-lg text-sm font-medium hover:bg-yoshizuya-mid transition-colors"
+        >
+          レンタルコレクションを見る
+          <span className="text-xs">→</span>
+        </a>
+      </div>
       {posts.length === 0 ? (
         <p className="text-muted-foreground">記事がまだありません。</p>
       ) : (

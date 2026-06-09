@@ -64,6 +64,18 @@ export default async function BlogLayout({ children }: { children: React.ReactNo
             <BannerSlot banners={sidebarBanners} variant="sidebar" />
           </>
         )}
+        <a
+          href="https://kimono-catalog.jp/f03.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block"
+        >
+          <img
+            src="/images/wheelchair-banner.jpg"
+            alt="車椅子のお客様へ"
+            className="w-full rounded-lg"
+          />
+        </a>
       </aside>
     </div>
   );
