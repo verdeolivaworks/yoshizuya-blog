@@ -13,6 +13,9 @@ const notoSansJP = Noto_Sans_JP({
 export const metadata: Metadata = {
   title: "ヨシヅヤブログ",
   description: "ヨシヅヤ振袖のブログ",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
