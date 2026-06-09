@@ -35,7 +35,7 @@ export function BannerSlot({ banners, variant, title }: BannerSlotProps) {
           />
         </div>
       ) : (
-        <div className="relative aspect-[16/9] w-full">
+        <div className="relative aspect-[21/9] w-full">
           <Image
             src={currentBanner.image.url}
             alt={currentBanner.image.alt || currentBanner.title}
@@ -46,8 +46,8 @@ export function BannerSlot({ banners, variant, title }: BannerSlotProps) {
         </div>
       )}
       {title && (
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
-          <p className="text-white text-sm font-bold">{title}</p>
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2">
+          <p className="text-white text-xs font-bold">{title}</p>
         </div>
       )}
       {banners.length > 1 && (
