@@ -1,6 +1,7 @@
 import { buildConfig } from "payload";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { Users } from "./collections/Users.ts";
 import { Posts } from "./collections/Posts.ts";
 import { Categories } from "./collections/Categories.ts";
 import { Tags } from "./collections/Tags.ts";
@@ -12,7 +13,7 @@ export default buildConfig({
   admin: {
     user: "users",
   },
-  collections: [Posts, Categories, Tags, Media, Inquiries],
+  collections: [Users, Posts, Categories, Tags, Media, Inquiries],
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || "",
