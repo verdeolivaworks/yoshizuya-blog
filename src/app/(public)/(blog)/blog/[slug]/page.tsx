@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ImageCarousel } from "@/components/ImageCarousel";
+import { RichText } from "@/components/RichText";
 import { getPost } from "@/lib/api";
 import Link from "next/link";
 
@@ -53,13 +54,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
       )}
       {carouselImages.length > 0 && <ImageCarousel images={carouselImages} />}
       <Separator className="mb-6" />
-      {post.content && (
-        <div className="prose prose-sm max-w-none leading-relaxed whitespace-pre-wrap">
-          {typeof post.content === "string"
-            ? post.content
-            : JSON.stringify(post.content)}
-        </div>
-      )}
+      {post.content && <RichText data={post.content} />}
       {post.tags?.length > 0 && (
         <div className="mt-8 flex flex-wrap gap-1.5">
           {post.tags.map((tag: any) => (
