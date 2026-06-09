@@ -1,21 +1,17 @@
 const BASE_URL = "https://www.atkimono.jp";
 
-export const LINKS = {
-  yoshizuya2607: {
-    lp: {
-      url: `${BASE_URL}/lp/yoshizuya2607/`,
-      utm: {
-        source: "blog",
-        medium: "referral",
-        campaign: "2607_dairental",
-      },
-    },
+const links = {
+  yoshizuya2607_lp: {
+    url: `${BASE_URL}/lp/yoshizuya2607/`,
+    utm: { source: "blog", medium: "referral", campaign: "2607_dairental" },
   },
-} as const;
+};
 
-export function buildUrl(
-  link: { url: string; utm: { source: string; medium: string; campaign: string } }
-): string {
+type LinkValue = (typeof links)[keyof typeof links];
+
+export const LINKS: Record<string, LinkValue> = links;
+
+export function buildUrl(link: LinkValue): string {
   const u = new URL(link.url);
   u.searchParams.set("utm_source", link.utm.source);
   u.searchParams.set("utm_medium", link.utm.medium);
@@ -23,4 +19,4 @@ export function buildUrl(
   return u.toString();
 }
 
-export type LinkKey = keyof typeof LINKS;
+export type LinkKey = keyof typeof links;
